@@ -1,0 +1,46 @@
+@model beltexam.Models.Activitee
+
+<div class="Mcontainer">
+    <div class="box">
+        <div class="Mmain">
+
+            <h4 class="inline">Dojo Activity Center</h4>
+            <div class="inline home_new"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <a href="/dashboard">Home</a> </div>
+            <div class="logout inline"><a href="/logout">Logout</a></div>
+            
+            <div>
+                <h5 class="title inline" >@ViewBag.actInDb.Title</h5>
+                @if(@ViewBag.actInDb != null) {
+                    List<int> partIds = new List<int>();
+                    foreach(var partId in @ViewBag.actInDb.Participants) {
+                        partIds.Add(partId.UserId);
+                        System.Console.WriteLine("partId.UserId: " + partId.UserId);
+                    }
+                    if(@ViewBag.actInDb.CreatorId == @ViewBag.Id) {
+                        <a class="inline" href="/delete/@ViewBag.actInDb.id"> <button class="delete" >Delete</button> </a>
+                    }else if(partIds.Any(x => x == @ViewBag.Id)) {
+                        <a class="inline" href="/deletepart/@ViewBag.actInDb.id"> <button class="join" >Leave</button> </a>
+                    } else {
+                        <a class="inline" href="/addpart/@ViewBag.actInDb.id"> <button class="join" >Join</button> </a>
+                    }
+                }
+            </div>
+
+            <div>CreatorId: @ViewBag.actInDb.CreatorId</div>
+            <div>UserId: @ViewBag.Id</div>
+            
+            <div class="coordinator">Coordinator: @ViewBag.actInDb.CreatorName</div>
+            <div class="date">Date: @ViewBag.actInDb.Date.ToString("M/d")</div>
+            <div class="description">Description:</div>
+            <div class="desc_text">@ViewBag.actInDb.Description</div>
+
+            <div class="guests">Participants:</div>
+            <ul>
+                @foreach(var part in @ViewBag.actInDb.Participants) {
+                    <li class="guest">@part.User.FirstName @part.User.LastName</li>
+                }
+            </ul>
+
+        </div>
+    </div>
+</div>

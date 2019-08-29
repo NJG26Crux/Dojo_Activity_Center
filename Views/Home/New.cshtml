@@ -1,0 +1,84 @@
+@model beltexam.Models.Activitee
+
+<div class="Mcontainer">
+    <div class="box">
+        <div class="Mmain">
+
+                <h4 class="inline">Dojo Activity Center</h4>
+                <div class="inline home_new"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <a href="/dashboard">Home</a> </div>
+                <div class="logout inline"><a href="/logout">Logout</a></div>
+
+            <form asp-action="CreateAct" asp-controller="Home" method="post">
+
+                <div class="marg_left">
+
+                    <div>
+                        <div class="title inline marg_right">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title">
+                            <div class="val">
+                                <span asp-validation-for="Title"></span>
+                            </div>
+                        </div>
+
+                        <div class="time inline">
+                            <label asp-for="Time"></label>
+                            <input class="time_width" asp-for="Time">
+                            <div class="val">
+                                <span asp-validation-for="Time"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="date inline marg_right">
+                            <label asp-for="Date"></label>
+                            <input asp-for="Date" >
+                            <div class="val">
+                                <span asp-validation-for="Date"></span>
+                            </div>
+                        </div>
+
+                        <div class="duration inline">
+                            <label asp-for="Duration"></label>
+                            <input class="time_width" asp-for="Duration" oninput="validity.valid||(value='')" min="1">
+                            <div class="val">
+                                <span asp-validation-for="Duration"></span>
+                            </div>
+                        </div>
+
+                        <div class="duration_type inline">
+                            <Select asp-for="DurationType">
+                                <option value="Minute">Minutes</option>
+                                <option value="Hour">Hours</option>
+                                <option value="Day">Days</option>
+                            </Select>
+                            <div class="val">
+                                <span asp-validation-for="DurationType"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="description">
+                        <label asp-for="Description"></label>
+                        <textarea asp-for="Description"></textarea>
+                        <div class="val">
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" value=@ViewBag.Id asp-for="CreatorId">
+
+                    <input type="hidden" value=@ViewBag.Name asp-for="CreatorName">
+
+                    <div class="new_activity">
+                        <button type="submit_act">Create Activity</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

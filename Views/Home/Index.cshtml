@@ -1,0 +1,93 @@
+﻿@using beltexam.Models
+@model IndexViewModel
+
+<div class="Mcontainer">
+    <div class="box">
+        <div class="Mmain">
+
+            <div class="left">
+
+                <h4>Register</h4>
+
+                <form asp-action="Register" asp-controller="Home" method="post">
+
+                    <div class="first_name">
+                        <label asp-for="User.FirstName"></label>
+                        <input asp-for="User.FirstName">
+                        <div class="val">
+                            <span asp-validation-for="User.FirstName"></span>
+                        </div>
+                    </div>
+
+                    <div class="last_name">
+                        <label asp-for="User.LastName"></label>
+                        <input asp-for="User.LastName">
+                        <div class="val">
+                            <span asp-validation-for="User.LastName"></span>
+                        </div>
+                    </div>
+
+                    <div class="email">
+                        <label asp-for="User.Email"></label>
+                        <input asp-for="User.Email">
+                        <div class="val">
+                            <span asp-validation-for="User.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="password">
+                        <label asp-for="User.Password"></label>
+                        <input asp-for="User.Password">
+                        <div class="val">
+                            <span asp-validation-for="User.Password"></span>
+                        </div>
+                    </div>
+
+                    <div class="confirm">
+                        <label asp-for="User.Confirm"></label>
+                        <input asp-for="User.Confirm">
+                        <div class="val">
+                            <span asp-validation-for="User.Confirm"></span>
+                        </div>
+                    </div>
+
+                    <div class="submit">
+                        <button type="submit">Register</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="right">
+                <h4>Login</h4>
+    
+                <form asp-action="Login" asp-controller="Home" method="post">
+
+                    <div class="email_login">
+                        <label asp-for="Login.Email"></label>
+                        <input asp-for="Login.Email">
+                        <div class="val">
+                            <span asp-validation-for="Login.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="password_login">
+                        <label asp-for="Login.Password"></label>
+                        <input asp-for="Login.Password">
+                        <div class="val">
+                            <span asp-validation-for="Login.Password"></span>
+                        </div>
+                    </div>
+
+                    <div class="submit">
+                        <button type="submit" value="Add Product">Log in</button>
+                    </div>
+                    
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="box">
+        <div class="Mmain">
+            <h4 class="inline">Dojo Activity Center</h4>
+            <div class="inline home">Welcome, @ViewBag.Name!</div>
+            <div class="logout inline"><a href="/logout">Logout</a></div>
+
+            <table>
+                <tr>
+                    <th class="c1">Activity</th>
+                    <th class="c2">Date and Time</th>
+                    <th class="c3">Duration</th>
+                    <th class="c4">Event Coordinator</th>
+                    <th class="c5">No. of Participants</th>
+                    <th class="c6">Actions</th>
+                </tr>
+
+                @if(@ViewBag.AllActivities != null) {
+                    foreach(var act in @ViewBag.AllActivities) {
+                        List<int> partIds = new List<int>();
+                        foreach(var partId in act.Participants) {
+                            partIds.Add(partId.UserId);
+                        }
+                        <tr>
+                            <td> <a href="/activity/@act.id">@act.Title</a> </td>
+                            @{string dandt = @act.Date.ToString("M/d") + " @ " + @act.Time.ToString("h:mm") + @act.Time.ToString("tt").ToLower(); }
+                            <td>@dandt</td>
+                            <td>@act.Duration @act.DurationType</td>
+                            <td>@act.CreatorName</td>
+                            <td>@act.Participants.Count</td>
+                            @if(@act.CreatorId == @ViewBag.Id) {
+                                <td> <a href="/delete/@act.id">Delete</a> </td>
+                                continue;
+                            } else if (partIds.Any(x => x == @ViewBag.Id)) {
+                                <td> <a href="/deletepart/@act.id">Leave</a> </td>
+                                continue;
+                            } else {
+                                <td> <a href="/addpart/@act.id">Join</a> </td>
+                            }
+                        </tr>
+                    }
+                }
+
+            </table>
+            <div class="new_activity">
+                    <a href="/new"><button>Add New Activity</button></a>
+            </div>
+        </div>
+        <div class="error"> <span>@ViewBag.Error</span> </div>
+        <div>     Hello @ViewBag.Name You Are Loged In, your Id is @ViewBag.Id</div>
+    </div>
+</div>
